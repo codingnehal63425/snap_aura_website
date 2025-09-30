@@ -34,3 +34,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Design
+
+The desktop header design is available in Figma:
+
+- Desktop header (Figma): https://www.figma.com/design/yeC67rdYEca7qT5nikviHJ/Snap-Aura?node-id=1-3&t=3jt2acLXaJhXcRvm-4
