@@ -14,80 +14,178 @@ interface ImageGalleryProps {
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
   const [loadedImages, setLoadedImages] = useState<{ [key: string]: boolean }>({});
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') handleCloseModal();
+      if (e.key === "Escape") handleCloseModal();
+      if (e.key === "ArrowLeft" && selectedImageIndex !== null) handlePrevious();
+      if (e.key === "ArrowRight" && selectedImageIndex !== null) handleNext();
     };
-    
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
-  }, []);
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [selectedImageIndex]);
 
   const handleImageLoad = (src: string) => {
-    setLoadedImages(prev => ({ ...prev, [src]: true }));
+    setLoadedImages((prev) => ({ ...prev, [src]: true }));
   };
 
-  const handleImageClick = (src: string) => {
-    setSelectedImage(src);
-    document.body.style.overflow = 'hidden';
+  const handleImageClick = (index: number) => {
+    setSelectedImageIndex(index);
+    document.body.style.overflow = "hidden";
   };
 
   const handleCloseModal = () => {
-    setSelectedImage(null);
-    document.body.style.overflow = 'auto';
+    setSelectedImageIndex(null);
+    document.body.style.overflow = "auto";
+  };
+
+  const handleNext = () => {
+    if (selectedImageIndex === null || isAnimating) return;
+    setIsAnimating(true);
+    setTimeout(() => {
+      setSelectedImageIndex((prev) =>
+        prev === null ? 0 : (prev + 1) % images.length
+      );
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const handlePrevious = () => {
+    if (selectedImageIndex === null || isAnimating) return;
+    setIsAnimating(true);
+    setTimeout(() => {
+      setSelectedImageIndex((prev) =>
+        prev === null ? 0 : (prev - 1 + images.length) % images.length
+      );
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const handleThumbnailClick = (index: number) => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setTimeout(() => {
+      setSelectedImageIndex(index);
+      setIsAnimating(false);
+    }, 300);
   };
 
   return (
     <>
-      {/* Image Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
+      {/* Image Gallery - Full Width, No Spacing */}
+      <div className="grid grid-cols-3 lg:grid-cols-6">
         {images.map((image, index) => (
-          <div key={index} className="relative w-full overflow-hidden bg-gray-100">
+          <div
+            key={index}
+            className="relative w-full overflow-hidden bg-gray-100 cursor-pointer group"
+            onClick={() => handleImageClick(index)}
+          >
             {/* Loading animation */}
             {!loadedImages[image.src] && (
               <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-gray-200 to-gray-300" />
             )}
-            <div className="cursor-pointer group" onClick={() => handleImageClick(image.src)}>
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={0}
-                height={0}
-                sizes="(max-width: 768px) 50vw, 25vw"
-                className={`w-full h-auto transition-all duration-300 group-hover:scale-105 ${
-                  loadedImages[image.src] ? 'opacity-100' : 'opacity-0'
-                }`}
-                onLoad={() => handleImageLoad(image.src)}
-              />
-            </div>
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={0}
+              height={0}
+              sizes="(max-width: 1024px) 33.33vw, 16.66vw"
+              className={`w-full h-auto transition-all duration-500 group-hover:scale-110 ${
+                loadedImages[image.src] ? "opacity-100" : "opacity-0"
+              }`}
+              onLoad={() => handleImageLoad(image.src)}
+            />
           </div>
         ))}
       </div>
 
-      {/* Image Modal */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center"
+      {/* Image Modal with Smooth Animation */}
+      {selectedImageIndex !== null && (
+        <div
+          className={`fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center justify-center transition-opacity duration-300 ${
+            selectedImageIndex !== null ? "opacity-100" : "opacity-0"
+          }`}
           onClick={handleCloseModal}
         >
-          <div className="relative max-w-[90vw] max-h-[90vh]" onClick={e => e.stopPropagation()}>
+          {/* Close Button */}
+          <button
+            className="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl z-50 w-12 h-12 flex items-center justify-center bg-black bg-opacity-50 rounded-full transition-all hover:bg-opacity-70"
+            onClick={handleCloseModal}
+          >
+            ×
+          </button>
+
+          {/* Main Image Container */}
+          <div className="relative w-full h-[calc(100vh-180px)] flex items-center justify-center px-16">
+            {/* Previous Button */}
             <button
-              className="absolute -top-10 right-0 text-white hover:text-gray-300 text-3xl"
-              onClick={handleCloseModal}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 text-5xl z-50 w-14 h-14 flex items-center justify-center bg-black bg-opacity-50 rounded-full transition-all hover:bg-opacity-70 hover:scale-110"
+              onClick={(e) => {
+                e.stopPropagation();
+                handlePrevious();
+              }}
             >
-              ×
+              ‹
             </button>
-            <Image
-              src={selectedImage}
-              alt="Enlarged view"
-              width={0}
-              height={0}
-              sizes="90vw"
-              className="w-auto h-auto max-w-full max-h-[90vh] object-contain"
-              priority
-            />
+
+            {/* Main Image */}
+            <div
+              className={`relative max-w-[80vw] max-h-full transition-all duration-300 ${
+                isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
+              }`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={images[selectedImageIndex].src}
+                alt={images[selectedImageIndex].alt}
+                width={0}
+                height={0}
+                sizes="80vw"
+                className="w-auto h-auto max-w-full max-h-[calc(100vh-180px)] object-contain"
+                priority
+              />
+            </div>
+
+            {/* Next Button */}
+            <button
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 text-5xl z-50 w-14 h-14 flex items-center justify-center bg-black bg-opacity-50 rounded-full transition-all hover:bg-opacity-70 hover:scale-110"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNext();
+              }}
+            >
+              ›
+            </button>
+          </div>
+
+          {/* Thumbnail Slider at Bottom */}
+          <div
+            className="w-full bg-black bg-opacity-70 py-4 px-4 overflow-x-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex gap-2 justify-start lg:justify-center">
+              {images.map((image, index) => (
+                <div
+                  key={index}
+                  className={`relative w-20 h-20 flex-shrink-0 cursor-pointer rounded overflow-hidden transition-all duration-300 ${
+                    index === selectedImageIndex
+                      ? "ring-4 ring-white scale-110"
+                      : "ring-2 ring-gray-500 hover:ring-white opacity-70 hover:opacity-100"
+                  }`}
+                  onClick={() => handleThumbnailClick(index)}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}

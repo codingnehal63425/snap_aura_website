@@ -1,32 +1,30 @@
 import React from "react";
-import Header from "../components/BHeader";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const About: React.FC = () => {
   return (
     <>
-      <main className="bg-white text-black px-4 md:px-20 lg:px-32 pt-12 lg:pt-14">
+      <Header />
+      <main className="bg-white text-black px-4 md:px-20 lg:px-32 pt-32 pb-16">
         {/* Top Title */}
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 lg:mb-12">
-          About Jayita / My Journey
+          About Jayita Laskar
         </h1>
 
-        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-start lg:items-stretch gap-12">
-          {/* Left Side Image with Button */}
-          <div className="flex-1 flex flex-col items-center lg:items-start">
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-12">
+          {/* Left Side Image */}
+          <div className="flex-shrink-0">
             <img
               src="/assets/me.png"
               alt="Jayita Laskar"
-              className="rounded-lg shadow-lg w-full object-cover lg:h-[500px] mb-4"
+              className="rounded-lg shadow-lg w-full lg:w-auto object-cover"
+              style={{ maxHeight: '100%' }}
             />
-            {/* Button below image */}
-            <button className="px-6 py-2 border border-black bg-white text-black font-medium rounded hover:bg-black hover:text-white transition-colors">
-              Jayita Laskar
-            </button>
           </div>
 
           {/* Right Side Content */}
-          <div className="flex-1 flex flex-col justify-center space-y-6">
+          <div className="flex-1 flex flex-col justify-start space-y-6">
             <p>
               Every story begins with a spark. For me, it started in 2016, back in school, armed
               with nothing more than a phone camera and a curious eye. What began as playful
@@ -64,19 +62,10 @@ const About: React.FC = () => {
             </p>
           </div>
         </div>
-
-        {/* Space between content and footer */}
-        <div className="h-12 lg:h-16"></div>
       </main>
-
-      {/* Bottom Header */}
-      <Header />
 
       {/* Footer */}
       <Footer />
-
-      {/* Extra space after footer */}
-      <div className="h-24"></div>
     </>
   );
 };

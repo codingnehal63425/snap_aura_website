@@ -2,86 +2,144 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
-const mainLinks = [
+const footerLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Portfolio", href: "/portfolio" },
-  { name: "Product", href: "/product" },
   { name: "Contact", href: "/contact" },
-];
-
-const legalLinks = [
   { name: "Privacy Policy", href: "/privacy-policy" },
   { name: "Terms of Service", href: "/terms-of-service" },
 ];
 
 const Footer = () => {
+  const pathname = usePathname();
+
   return (
-    <footer className="bg-black text-white py-12">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand Section */}
-          <div className="text-center md:text-left">
-            <h3 className="text-xl font-bold mb-4">Snap Aura by Jayita Laskar</h3>
-            <div className="flex justify-center md:justify-start space-x-4 mt-4">
-              {/* WhatsApp */}
+    <footer>
+
+
+      {/* Gradient Footer Section */}
+      <div className="bg-gradient-to-r from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white py-6">
+        <div className="max-w-7xl mx-auto px-4">
+          {/* Desktop Layout - Single Line */}
+          <div className="hidden lg:flex items-center justify-between gap-6">
+            {/* Left: Copyright */}
+            <div className="text-sm whitespace-nowrap flex-shrink-0">
+              © 2025 Snap Aura. All rights reserved.
+            </div>
+
+            {/* Center: Navigation Links */}
+            <nav className="flex gap-2 xl:gap-3 flex-wrap justify-center">
+              {footerLinks.map((link, index) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={index}
+                    href={link.href}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-lg border-2 border-white transition-all duration-300 ${isActive
+                        ? "bg-white text-[#ee2a7b]"
+                        : "bg-transparent text-white hover:bg-white hover:text-[#ee2a7b]"
+                      }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* Right: Social Icons */}
+            <div className="flex gap-3 flex-shrink-0">
               <a
                 href="https://wa.me/917729051055"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 border border-white rounded hover:bg-white hover:text-black transition-colors duration-300"
+                className="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-white hover:bg-white transition-all duration-300 group"
               >
-                <Image src='/assets/whatapp.png' alt="WhatsApp" width={20} height={20} className="invert" />
-                <span className="hidden sm:inline">7729051055</span>
+                <Image
+                  src='/assets/whatapp.png'
+                  alt="WhatsApp"
+                  width={20}
+                  height={20}
+                  className="brightness-0 invert group-hover:invert-0 transition-all"
+                />
               </a>
-
-              {/* Instagram */}
               <a
                 href="https://instagram.com/_Snapaura_"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 border border-white rounded hover:bg-white hover:text-black transition-colors duration-300"
+                className="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-white hover:bg-white transition-all duration-300 group"
               >
-                <Image src='/assets/instagram.png' alt="Instagram" width={20} height={20} className="invert" />
-                <span className="hidden sm:inline">_Snapaura_</span>
+                <Image
+                  src='/assets/instagram.png'
+                  alt="Instagram"
+                  width={20}
+                  height={20}
+                  className="brightness-0 invert group-hover:invert-0 transition-all"
+                />
               </a>
             </div>
           </div>
 
-          {/* Quick Links Section */}
-          <div className="md:col-span-2">
-            <h3 className="text-xl font-bold mb-4 text-center md:text-left">Quick Links</h3>
-            {/* Main Navigation Links */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {mainLinks.map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.href}
-                  className="px-4 py-2 border border-white rounded hover:bg-white hover:text-black transition-colors duration-300 text-center"
-                >
-                  {link.name}
-                </Link>
-              ))}
+          {/* Mobile Layout */}
+          <div className="lg:hidden space-y-4">
+            {/* Copyright */}
+            <div className="text-center text-sm">
+              © 2025 Snap Aura. All rights reserved.
             </div>
-            {/* Legal Links in one line */}
-            <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-6">
-              {legalLinks.map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.href}
-                  className="px-4 py-2 border border-white rounded hover:bg-white hover:text-black transition-colors duration-300 text-center whitespace-nowrap"
-                >
-                  {link.name}
-                </Link>
-              ))}
+
+            {/* Navigation Links */}
+            <div className="grid grid-cols-2 gap-2">
+              {footerLinks.map((link, index) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={index}
+                    href={link.href}
+                    className={`px-3 py-2 text-sm font-medium rounded-lg border-2 border-white text-center transition-all duration-300 ${isActive
+                        ? "bg-white text-[#ee2a7b]"
+                        : "bg-transparent text-white hover:bg-white hover:text-[#ee2a7b]"
+                      }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex gap-3 justify-center">
+              <a
+                href="https://wa.me/917729051055"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-white hover:bg-white transition-all duration-300 group"
+              >
+                <Image
+                  src='/assets/whatapp.png'
+                  alt="WhatsApp"
+                  width={20}
+                  height={20}
+                  className="brightness-0 invert group-hover:invert-0 transition-all"
+                />
+              </a>
+              <a
+                href="https://instagram.com/_Snapaura_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-white hover:bg-white transition-all duration-300 group"
+              >
+                <Image
+                  src='/assets/instagram.png'
+                  alt="Instagram"
+                  width={20}
+                  height={20}
+                  className="brightness-0 invert group-hover:invert-0 transition-all"
+                />
+              </a>
             </div>
           </div>
-        </div>
-
-        {/* Copyright Section */}
-        <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm">
-          <p>© {new Date().getFullYear()} Snap Aura. All rights reserved.</p>
         </div>
       </div>
     </footer>
