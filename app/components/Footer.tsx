@@ -18,15 +18,13 @@ const Footer = () => {
 
   return (
     <footer>
-
-
-      {/* Gradient Footer Section */}
-      <div className="bg-gradient-to-r from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white py-6">
+      {/* Footer Section */}
+      <div className="bg-[#0D0D0D] text-white py-6 border-t-2 border-[#E5097F]">
         <div className="max-w-7xl mx-auto px-4">
           {/* Desktop Layout - Single Line */}
           <div className="hidden lg:flex items-center justify-between gap-6">
             {/* Left: Copyright */}
-            <div className="text-sm whitespace-nowrap flex-shrink-0">
+            <div className="text-sm whitespace-nowrap flex-shrink-0 text-white">
               © 2025 Snap Aura. All rights reserved.
             </div>
 
@@ -39,8 +37,8 @@ const Footer = () => {
                     key={index}
                     href={link.href}
                     className={`px-3 py-1.5 text-sm font-medium rounded-lg border-2 border-white transition-all duration-300 ${isActive
-                        ? "bg-white text-[#ee2a7b]"
-                        : "bg-transparent text-white hover:bg-white hover:text-[#ee2a7b]"
+                        ? "bg-white text-[#E5097F]"
+                        : "bg-transparent text-white hover:bg-white hover:text-[#E5097F]"
                       }`}
                   >
                     {link.name}
@@ -85,7 +83,7 @@ const Footer = () => {
           {/* Mobile Layout */}
           <div className="lg:hidden space-y-4">
             {/* Copyright */}
-            <div className="text-center text-sm">
+            <div className="text-center text-sm text-white">
               © 2025 Snap Aura. All rights reserved.
             </div>
 
@@ -98,8 +96,8 @@ const Footer = () => {
                     key={index}
                     href={link.href}
                     className={`px-3 py-2 text-sm font-medium rounded-lg border-2 border-white text-center transition-all duration-300 ${isActive
-                        ? "bg-white text-[#ee2a7b]"
-                        : "bg-transparent text-white hover:bg-white hover:text-[#ee2a7b]"
+                        ? "bg-white text-[#E5097F]"
+                        : "bg-transparent text-white hover:bg-white hover:text-[#E5097F]"
                       }`}
                   >
                     {link.name}

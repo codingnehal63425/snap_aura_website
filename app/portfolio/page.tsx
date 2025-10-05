@@ -80,9 +80,9 @@ const Portfolio: React.FC = () => {
   return (
     <>
       <Header />
-      <main className="bg-white text-black pt-32 pb-16">
+      <main className="bg-[#0D0D0D] text-white pt-32 pb-16">
         {/* Page Title */}
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-10 bg-gradient-to-r from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] bg-clip-text text-transparent px-4">
+        <h1 className="text-4xl md:text-5xl font-bold text-center mb-10 bg-gradient-to-r from-[#E5097F] to-[#FFD369] bg-clip-text text-transparent px-4">
           Portfolio
         </h1>
 
@@ -92,9 +92,9 @@ const Portfolio: React.FC = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-lg font-mediumtransition-all duration-300 ${activeCategory === cat
-                ? "bg-gradient-to-r from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white border-transparent shadow-lg shadow-pink-200"
-                : " border-2  bg-transparent border-[#ee2a7b] bg-gradient-to-r from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] bg-clip-text text-transparent hover:border-[#f9ce34] hover:shadow-lg hover:shadow-pink-200"
+              className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${activeCategory === cat
+                ? "bg-gradient-to-r from-[#E5097F] to-[#FFD369] text-white shadow-lg shadow-[#E5097F]/30"
+                : "border-2 bg-transparent border-[#E5097F] text-[#C0C0C0] hover:border-[#FFD369] hover:text-white hover:shadow-lg hover:shadow-[#FFD369]/30"
                 }`}
             >
               {cat}

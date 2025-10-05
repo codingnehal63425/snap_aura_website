@@ -79,12 +79,12 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
         {images.map((image, index) => (
           <div
             key={index}
-            className="relative w-full overflow-hidden bg-gray-100 cursor-pointer group"
+            className="relative w-full overflow-hidden bg-[#1a1a1a] cursor-pointer group"
             onClick={() => handleImageClick(index)}
           >
             {/* Loading animation */}
             {!loadedImages[image.src] && (
-              <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-gray-200 to-gray-300" />
+              <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-[#1a1a1a] to-[#2a2a2a]" />
             )}
             <Image
               src={image.src}
@@ -92,7 +92,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
               width={0}
               height={0}
               sizes="(max-width: 1024px) 33.33vw, 16.66vw"
-              className={`w-full h-auto transition-all duration-500 group-hover:scale-110 ${
+              className={`w-full h-auto transition-all duration-500 group-hover:scale-110 group-hover:brightness-110 ${
                 loadedImages[image.src] ? "opacity-100" : "opacity-0"
               }`}
               onLoad={() => handleImageLoad(image.src)}
