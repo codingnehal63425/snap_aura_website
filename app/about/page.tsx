@@ -1,13 +1,14 @@
 ﻿import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import FloatingButtons from "../components/FloatingButtons";
 
 const About: React.FC = () => {
   return (
     <>
       <Header />
-      <main className="bg-[#0D0D0D] text-white px-4 md:px-20 lg:px-32 pt-32 pb-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 lg:mb-12 text-[#E5097F]">
+      <main className="bg-white text-gray-900 px-4 md:px-20 lg:px-32 pt-32 pb-16">
+        <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 lg:mb-12 text-black">
           About Jayita Laskar
         </h1>
 
@@ -16,11 +17,11 @@ const About: React.FC = () => {
             <img
               src="/assets/me.png"
               alt="Jayita Laskar"
-              className="rounded-lg shadow-2xl shadow-[#E5097F]/20 w-full lg:w-auto object-cover border-2 border-[#E5097F]/30"
+              className="rounded-lg shadow-2xl shadow-gray-400/20 w-full lg:w-auto object-cover border-2 border-black/30"
             />
           </div>
 
-          <div className="flex-1 flex flex-col justify-start space-y-6 text-[#C0C0C0]">
+          <div className="flex-1 flex flex-col justify-start space-y-6 text-black">
             <p className="leading-relaxed">
               Every story begins with a spark. For me, it started in 2016, back in school, armed
               with nothing more than a phone camera and a curious eye. What began as playful
@@ -43,7 +44,7 @@ const About: React.FC = () => {
               with purpose and impact.
             </p>
 
-            <h2 className="text-2xl md:text-3xl font-semibold mt-4 text-[#FFD369]">
+            <h2 className="text-2xl md:text-3xl font-semibold mt-4 text-black">
               What SnapAura Represents:
             </h2>
 
@@ -53,7 +54,7 @@ const About: React.FC = () => {
               essence that deserves to be seen, felt, and remembered.
             </p>
 
-            <p className="italic font-medium text-white">
+            <p className="italic font-medium text-black">
               Because true photography is not about what you see it is about what you feel.
             </p>
           </div>
@@ -61,6 +62,7 @@ const About: React.FC = () => {
       </main>
 
       <Footer />
+      <FloatingButtons />
     </>
   );
 };

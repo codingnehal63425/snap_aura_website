@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import FloatingButtons from "./components/FloatingButtons";
 
 interface ImageType {
   src: string;
@@ -11,56 +12,124 @@ interface ImageType {
 }
 
 const galleryImages: ImageType[] = [
-  { src: "/assets/d1.png", alt: "Gallery Image 1" },
-  { src: "/assets/d2.png", alt: "Gallery Image 2" },
-  { src: "/assets/d3.png", alt: "Gallery Image 3" },
-  { src: "/assets/d4.png", alt: "Gallery Image 4" },
-  { src: "/assets/d5.png", alt: "Gallery Image 5" },
-  { src: "/assets/d6.png", alt: "Gallery Image 6" },
-  { src: "/assets/d7.png", alt: "Gallery Image 7" },
-  { src: "/assets/d8.png", alt: "Gallery Image 8" },
-  { src: "/assets/d1.png", alt: "Gallery Image 9" },
-  { src: "/assets/d2.png", alt: "Gallery Image 10" },
-  { src: "/assets/d3.png", alt: "Gallery Image 11" },
-  { src: "/assets/d4.png", alt: "Gallery Image 12" },
-  { src: "/assets/d5.png", alt: "Gallery Image 13" },
-  { src: "/assets/d6.png", alt: "Gallery Image 14" },
-  { src: "/assets/d7.png", alt: "Gallery Image 15" },
-  { src: "/assets/d8.png", alt: "Gallery Image 16" },
-  { src: "/assets/d1.png", alt: "Gallery Image 17" },
-  { src: "/assets/d2.png", alt: "Gallery Image 18" },
-  { src: "/assets/d3.png", alt: "Gallery Image 19" },
-  { src: "/assets/d4.png", alt: "Gallery Image 20" },
-  { src: "/assets/d5.png", alt: "Gallery Image 21" },
-  { src: "/assets/d6.png", alt: "Gallery Image 22" },
-  { src: "/assets/d7.png", alt: "Gallery Image 23" },
-  { src: "/assets/d8.png", alt: "Gallery Image 24" },
-  { src: "/assets/d1.png", alt: "Gallery Image 25" },
-  { src: "/assets/d2.png", alt: "Gallery Image 26" },
-  { src: "/assets/d3.png", alt: "Gallery Image 27" },
-  { src: "/assets/d4.png", alt: "Gallery Image 28" },
-  { src: "/assets/d5.png", alt: "Gallery Image 29" },
-  { src: "/assets/d6.png", alt: "Gallery Image 30" },
-    { src: "/assets/d1.png", alt: "Gallery Image 1" },
-  { src: "/assets/d2.png", alt: "Gallery Image 2" },
-  { src: "/assets/d3.png", alt: "Gallery Image 3" },
-  { src: "/assets/d4.png", alt: "Gallery Image 4" },
-  { src: "/assets/d5.png", alt: "Gallery Image 5" },
-  { src: "/assets/d6.png", alt: "Gallery Image 6" },
-  { src: "/assets/d7.png", alt: "Gallery Image 7" },
-  { src: "/assets/d8.png", alt: "Gallery Image 8" },
-  { src: "/assets/d1.png", alt: "Gallery Image 9" },
-  { src: "/assets/d2.png", alt: "Gallery Image 10" },
-  { src: "/assets/d3.png", alt: "Gallery Image 11" },
-  { src: "/assets/d4.png", alt: "Gallery Image 12" },
-  { src: "/assets/d5.png", alt: "Gallery Image 13" },
-  { src: "/assets/d6.png", alt: "Gallery Image 14" },
-  { src: "/assets/d7.png", alt: "Gallery Image 15" },
-  { src: "/assets/d8.png", alt: "Gallery Image 16" },
-  { src: "/assets/d1.png", alt: "Gallery Image 17" },
-  { src: "/assets/d2.png", alt: "Gallery Image 18" },
- 
- 
+  { src: "/beauty/1.jpg", alt: "Beauty Image 1" },
+  { src: "/beauty/2.jpg", alt: "Beauty Image 2" },
+  { src: "/beauty/3.jpg", alt: "Beauty Image 3" },
+  { src: "/beauty/4.jpg", alt: "Beauty Image 4" },
+  { src: "/beauty/5.jpg", alt: "Beauty Image 5" },
+  { src: "/beauty/6.jpg", alt: "Beauty Image 6" },
+  { src: "/beauty/7.jpg", alt: "Beauty Image 7" },
+  { src: "/beauty/8.jpg", alt: "Beauty Image 8" },
+  { src: "/beauty/9.jpg", alt: "Beauty Image 9" },
+  { src: "/beauty/10.jpg", alt: "Beauty Image 10" },
+  { src: "/beauty/11.jpg", alt: "Beauty Image 11" },
+  { src: "/beauty/12.jpg", alt: "Beauty Image 12" },
+  { src: "/beauty/13.jpg", alt: "Beauty Image 13" },
+  { src: "/beauty/14.jpg", alt: "Beauty Image 14" },
+  { src: "/beauty/15.jpg", alt: "Beauty Image 15" },
+  { src: "/beauty/16.jpg", alt: "Beauty Image 16" },
+  { src: "/beauty/17.jpg", alt: "Beauty Image 17" },
+  { src: "/beauty/18.jpg", alt: "Beauty Image 18" },
+  { src: "/beauty/19.jpg", alt: "Beauty Image 19" },
+  { src: "/beauty/20.jpg", alt: "Beauty Image 20" },
+  { src: "/beauty/21.jpg", alt: "Beauty Image 21" },
+  { src: "/beauty/22.jpg", alt: "Beauty Image 22" },
+  { src: "/beauty/23.jpg", alt: "Beauty Image 23" },
+  { src: "/beauty/24.jpg", alt: "Beauty Image 24" },
+  { src: "/beauty/25.jpg", alt: "Beauty Image 25" },
+  { src: "/beauty/26.jpg", alt: "Beauty Image 26" },
+  { src: "/beauty/27.jpg", alt: "Beauty Image 27" },
+  { src: "/beauty/28.jpg", alt: "Beauty Image 28" },
+  { src: "/beauty/29.jpg", alt: "Beauty Image 29" },
+  { src: "/beauty/30.jpg", alt: "Beauty Image 30" },
+  { src: "/beauty/31.jpg", alt: "Beauty Image 31" },
+  { src: "/beauty/32.jpg", alt: "Beauty Image 32" },
+  { src: "/beauty/33.jpg", alt: "Beauty Image 33" },
+  { src: "/beauty/34.jpg", alt: "Beauty Image 34" },
+  { src: "/beauty/35.jpg", alt: "Beauty Image 35" },
+  { src: "/beauty/36.jpg", alt: "Beauty Image 36" },
+  { src: "/beauty/37.jpg", alt: "Beauty Image 37" },
+  { src: "/beauty/38.jpg", alt: "Beauty Image 38" },
+  { src: "/beauty/39.jpg", alt: "Beauty Image 39" },
+  { src: "/beauty/40.jpg", alt: "Beauty Image 40" },
+  { src: "/beauty/41.jpg", alt: "Beauty Image 41" },
+  { src: "/beauty/42.jpg", alt: "Beauty Image 42" },
+  { src: "/beauty/43.jpg", alt: "Beauty Image 43" },
+  { src: "/beauty/44.jpg", alt: "Beauty Image 44" },
+  { src: "/beauty/45.jpg", alt: "Beauty Image 45" },
+  { src: "/beauty/46.jpg", alt: "Beauty Image 46" },
+  { src: "/beauty/47.jpg", alt: "Beauty Image 47" },
+  { src: "/beauty/48.jpg", alt: "Beauty Image 48" },
+  { src: "/beauty/49.jpg", alt: "Beauty Image 49" },
+  { src: "/beauty/50.jpg", alt: "Beauty Image 50" },
+  { src: "/beauty/51.jpg", alt: "Beauty Image 51" },
+  { src: "/beauty/52.jpg", alt: "Beauty Image 52" },
+  { src: "/beauty/53.jpg", alt: "Beauty Image 53" },
+  { src: "/beauty/54.jpg", alt: "Beauty Image 54" },
+  { src: "/beauty/55.jpg", alt: "Beauty Image 55" },
+  { src: "/beauty/56.jpg", alt: "Beauty Image 56" },
+  { src: "/beauty/57.jpg", alt: "Beauty Image 57" },
+  { src: "/beauty/58.jpg", alt: "Beauty Image 58" },
+  { src: "/beauty/59.jpg", alt: "Beauty Image 59" },
+  { src: "/beauty/60.jpg", alt: "Beauty Image 60" },
+  { src: "/beauty/61.jpg", alt: "Beauty Image 61" },
+  { src: "/beauty/62.jpg", alt: "Beauty Image 62" },
+  { src: "/beauty/63.jpg", alt: "Beauty Image 63" },
+  { src: "/beauty/64.jpg", alt: "Beauty Image 64" },
+  { src: "/beauty/65.jpg", alt: "Beauty Image 65" },
+  { src: "/beauty/66.jpg", alt: "Beauty Image 66" },
+  { src: "/beauty/67.jpg", alt: "Beauty Image 67" },
+  { src: "/beauty/68.jpg", alt: "Beauty Image 68" },
+  { src: "/beauty/69.jpg", alt: "Beauty Image 69" },
+  { src: "/beauty/70.jpg", alt: "Beauty Image 70" },
+  { src: "/beauty/71.jpg", alt: "Beauty Image 71" },
+  { src: "/beauty/72.jpg", alt: "Beauty Image 72" },
+
+
+  { src: "/fashion/1.jpg", alt: "Fashion Image 1" },
+  { src: "/fashion/2.jpg", alt: "Fashion Image 2" },
+  { src: "/fashion/3.jpg", alt: "Fashion Image 3" },
+  { src: "/fashion/4.jpg", alt: "Fashion Image 4" },
+  { src: "/fashion/5.jpg", alt: "Fashion Image 5" },
+  { src: "/fashion/6.jpg", alt: "Fashion Image 6" },
+  { src: "/fashion/7.jpg", alt: "Fashion Image 7" },
+  { src: "/fashion/8.jpg", alt: "Fashion Image 8" },
+  { src: "/fashion/9.jpg", alt: "Fashion Image 9" },
+  { src: "/fashion/10.jpg", alt: "Fashion Image 10" },
+  { src: "/fashion/11.jpg", alt: "Fashion Image 11" },
+  { src: "/fashion/12.jpg", alt: "Fashion Image 12" },
+  { src: "/fashion/13.jpg", alt: "Fashion Image 13" },
+  { src: "/fashion/14.jpg", alt: "Fashion Image 14" },
+  { src: "/fashion/15.jpg", alt: "Fashion Image 15" },
+  { src: "/fashion/16.jpg", alt: "Fashion Image 16" },
+  { src: "/fashion/17.jpg", alt: "Fashion Image 17" },
+  { src: "/fashion/18.jpg", alt: "Fashion Image 18" },
+  { src: "/fashion/19.jpg", alt: "Fashion Image 19" },
+  { src: "/fashion/20.jpg", alt: "Fashion Image 20" },
+  { src: "/fashion/21.jpg", alt: "Fashion Image 21" },
+  { src: "/fashion/22.jpg", alt: "Fashion Image 22" },
+  { src: "/fashion/23.jpg", alt: "Fashion Image 23" },
+  { src: "/fashion/24.jpg", alt: "Fashion Image 24" },
+  { src: "/fashion/25.jpg", alt: "Fashion Image 25" },
+  { src: "/fashion/26.jpg", alt: "Fashion Image 26" },
+  { src: "/fashion/27.jpg", alt: "Fashion Image 27" },
+  { src: "/fashion/28.jpg", alt: "Fashion Image 28" },
+  { src: "/fashion/29.jpg", alt: "Fashion Image 29" },
+  { src: "/fashion/30.jpg", alt: "Fashion Image 30" },
+  { src: "/fashion/31.jpg", alt: "Fashion Image 31" },
+  { src: "/fashion/32.jpg", alt: "Fashion Image 32" },
+  { src: "/fashion/33.jpg", alt: "Fashion Image 33" },
+  { src: "/fashion/34.jpg", alt: "Fashion Image 34" },
+  { src: "/fashion/35.jpg", alt: "Fashion Image 35" },
+  { src: "/fashion/36.jpg", alt: "Fashion Image 36" },
+  { src: "/fashion/37.jpg", alt: "Fashion Image 37" },
+  { src: "/fashion/38.jpg", alt: "Fashion Image 38" },
+  { src: "/fashion/39.jpg", alt: "Fashion Image 39" },
+  { src: "/fashion/40.jpg", alt: "Fashion Image 40" },
+  { src: "/fashion/41.jpg", alt: "Fashion Image 41" },
+  { src: "/fashion/42.jpg", alt: "Fashion Image 42" },
+
+
 ];
 
 export default function Home() {
@@ -124,7 +193,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0D0D0D] flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       <Header />
       <main className="pt-[80px] flex-grow">
         {/* Image Gallery - Full Width, No Spacing */}
@@ -132,12 +201,12 @@ export default function Home() {
           {galleryImages.map((image, index) => (
             <div
               key={index}
-              className="relative w-full overflow-hidden bg-[#1a1a1a] cursor-pointer group"
+              className="relative w-full min-h-[200px] md:min-h-[250px] lg:min-h-[200px] overflow-hidden bg-gray-100 cursor-pointer group"
               onClick={() => handleImageClick(index)}
             >
               {/* Loading animation */}
               {!loadedImages[image.src] && (
-                <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-[#1a1a1a] to-[#2a2a2a]" />
+                <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-gray-200 to-gray-300" />
               )}
               <Image
                 src={image.src}
@@ -145,9 +214,8 @@ export default function Home() {
                 width={0}
                 height={0}
                 sizes="(max-width: 1024px) 33.33vw, 16.66vw"
-                className={`w-full h-auto transition-all duration-500 group-hover:scale-110 group-hover:brightness-110 ${
-                  loadedImages[image.src] ? "opacity-100" : "opacity-0"
-                }`}
+                className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110 ${loadedImages[image.src] ? "opacity-100" : "opacity-0"
+                  }`}
                 onLoad={() => handleImageLoad(image.src)}
               />
             </div>
@@ -157,9 +225,8 @@ export default function Home() {
         {/* Image Modal with Smooth Animation */}
         {selectedImageIndex !== null && (
           <div
-            className={`fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center justify-center transition-opacity duration-300 ${
-              selectedImageIndex !== null ? "opacity-100" : "opacity-0"
-            }`}
+            className={`fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center justify-center transition-opacity duration-300 ${selectedImageIndex !== null ? "opacity-100" : "opacity-0"
+              }`}
             onClick={handleCloseModal}
           >
             {/* Close Button */}
@@ -185,9 +252,8 @@ export default function Home() {
 
               {/* Main Image */}
               <div
-                className={`relative max-w-[80vw] max-h-full transition-all duration-300 ${
-                  isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
-                }`}
+                className={`relative max-w-[80vw] max-h-full transition-all duration-300 ${isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
+                  }`}
                 onClick={(e) => e.stopPropagation()}
               >
                 <Image
@@ -222,11 +288,10 @@ export default function Home() {
                 {galleryImages.map((image, index) => (
                   <div
                     key={index}
-                    className={`relative w-20 h-20 flex-shrink-0 cursor-pointer rounded overflow-hidden transition-all duration-300 ${
-                      index === selectedImageIndex
-                        ? "ring-4 ring-white scale-110"
-                        : "ring-2 ring-gray-500 hover:ring-white opacity-70 hover:opacity-100"
-                    }`}
+                    className={`relative w-20 h-20 flex-shrink-0 cursor-pointer rounded overflow-hidden transition-all duration-300 ${index === selectedImageIndex
+                      ? "ring-4 ring-white scale-110"
+                      : "ring-2 ring-gray-500 hover:ring-white opacity-70 hover:opacity-100"
+                      }`}
                     onClick={() => handleThumbnailClick(index)}
                   >
                     <Image
@@ -244,6 +309,7 @@ export default function Home() {
         )}
       </main>
       <Footer />
+      <FloatingButtons />
     </div>
   );
 }

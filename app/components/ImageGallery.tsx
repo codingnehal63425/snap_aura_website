@@ -79,12 +79,12 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
         {images.map((image, index) => (
           <div
             key={index}
-            className="relative w-full overflow-hidden bg-[#1a1a1a] cursor-pointer group"
+            className="relative w-full min-h-[200px] md:min-h-[250px] lg:min-h-[200px] overflow-hidden bg-gray-100 cursor-pointer group"
             onClick={() => handleImageClick(index)}
           >
             {/* Loading animation */}
             {!loadedImages[image.src] && (
-              <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-[#1a1a1a] to-[#2a2a2a]" />
+              <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-gray-200 to-gray-300" />
             )}
             <Image
               src={image.src}
@@ -92,9 +92,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
               width={0}
               height={0}
               sizes="(max-width: 1024px) 33.33vw, 16.66vw"
-              className={`w-full h-auto transition-all duration-500 group-hover:scale-110 group-hover:brightness-110 ${
-                loadedImages[image.src] ? "opacity-100" : "opacity-0"
-              }`}
+              className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110 ${loadedImages[image.src] ? "opacity-100" : "opacity-0"
+                }`}
               onLoad={() => handleImageLoad(image.src)}
             />
           </div>
@@ -104,9 +103,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
       {/* Image Modal with Smooth Animation */}
       {selectedImageIndex !== null && (
         <div
-          className={`fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center justify-center transition-opacity duration-300 ${
-            selectedImageIndex !== null ? "opacity-100" : "opacity-0"
-          }`}
+          className={`fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center justify-center transition-opacity duration-300 ${selectedImageIndex !== null ? "opacity-100" : "opacity-0"
+            }`}
           onClick={handleCloseModal}
         >
           {/* Close Button */}
@@ -132,9 +130,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
 
             {/* Main Image */}
             <div
-              className={`relative max-w-[80vw] max-h-full transition-all duration-300 ${
-                isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
-              }`}
+              className={`relative max-w-[80vw] max-h-full transition-all duration-300 ${isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
+                }`}
               onClick={(e) => e.stopPropagation()}
             >
               <Image
@@ -169,11 +166,10 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
               {images.map((image, index) => (
                 <div
                   key={index}
-                  className={`relative w-20 h-20 flex-shrink-0 cursor-pointer rounded overflow-hidden transition-all duration-300 ${
-                    index === selectedImageIndex
+                  className={`relative w-20 h-20 flex-shrink-0 cursor-pointer rounded overflow-hidden transition-all duration-300 ${index === selectedImageIndex
                       ? "ring-4 ring-white scale-110"
                       : "ring-2 ring-gray-500 hover:ring-white opacity-70 hover:opacity-100"
-                  }`}
+                    }`}
                   onClick={() => handleThumbnailClick(index)}
                 >
                   <Image

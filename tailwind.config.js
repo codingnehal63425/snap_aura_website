@@ -10,6 +10,7 @@ module.exports = {
       fontFamily: {
         belleza: ['var(--font-belleza)', 'serif'],
         'bebas-neue': ['var(--font-bebas-neue)', 'sans-serif'],
+        'dancing-script': ['var(--font-dancing-script)', 'cursive'],
       },
     },
   },

@@ -19,26 +19,26 @@ const Footer = () => {
   return (
     <footer>
       {/* Footer Section */}
-      <div className="bg-[#0D0D0D] text-white py-6 border-t-2 border-[#E5097F]">
+      <div className="bg-white text-black py-6 border-t-2 border-black">
         <div className="max-w-7xl mx-auto px-4">
           {/* Desktop Layout - Single Line */}
           <div className="hidden lg:flex items-center justify-between gap-6">
             {/* Left: Copyright */}
-            <div className="text-sm whitespace-nowrap flex-shrink-0 text-white">
+            <div className="text-sm whitespace-nowrap flex-shrink-0 text-black">
               © 2025 Snap Aura. All rights reserved.
             </div>
 
             {/* Center: Navigation Links */}
-            <nav className="flex gap-2 xl:gap-3 flex-wrap justify-center">
+            <nav className="w-full flex flex-wrap gap-2 xl:gap-3 justify-end">
               {footerLinks.map((link, index) => {
                 const isActive = pathname === link.href;
                 return (
                   <Link
                     key={index}
                     href={link.href}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-lg border-2 border-white transition-all duration-300 ${isActive
-                        ? "bg-white text-[#E5097F]"
-                        : "bg-transparent text-white hover:bg-white hover:text-[#E5097F]"
+                    className={`px-3 py-1.5 text-sm font-medium rounded-lg border-2 border-black transition-all duration-300 ${isActive
+                      ? "bg-black text-white"
+                      : "bg-transparent text-black hover:bg-black hover:text-white"
                       }`}
                   >
                     {link.name}
@@ -53,28 +53,28 @@ const Footer = () => {
                 href="https://wa.me/917729051055"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-white hover:bg-white transition-all duration-300 group"
+                className="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-black hover:bg-black transition-all duration-300 group"
               >
                 <Image
                   src='/assets/whatapp.png'
                   alt="WhatsApp"
                   width={20}
                   height={20}
-                  className="brightness-0 invert group-hover:invert-0 transition-all"
+                  className="filter group-hover:brightness-0 group-hover:invert transition-all"
                 />
               </a>
               <a
                 href="https://instagram.com/_Snapaura_"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-white hover:bg-white transition-all duration-300 group"
+                className="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-black hover:bg-black transition-all duration-300 group"
               >
                 <Image
                   src='/assets/instagram.png'
                   alt="Instagram"
                   width={20}
                   height={20}
-                  className="brightness-0 invert group-hover:invert-0 transition-all"
+                  className="filter group-hover:brightness-0 group-hover:invert transition-all"
                 />
               </a>
             </div>
@@ -82,10 +82,7 @@ const Footer = () => {
 
           {/* Mobile Layout */}
           <div className="lg:hidden space-y-4">
-            {/* Copyright */}
-            <div className="text-center text-sm text-white">
-              © 2025 Snap Aura. All rights reserved.
-            </div>
+
 
             {/* Navigation Links */}
             <div className="grid grid-cols-2 gap-2">
@@ -95,9 +92,9 @@ const Footer = () => {
                   <Link
                     key={index}
                     href={link.href}
-                    className={`px-3 py-2 text-sm font-medium rounded-lg border-2 border-white text-center transition-all duration-300 ${isActive
-                        ? "bg-white text-[#E5097F]"
-                        : "bg-transparent text-white hover:bg-white hover:text-[#E5097F]"
+                    className={`px-3 py-2 text-sm font-medium rounded-lg border-2 border-black text-center transition-all duration-300 ${isActive
+                      ? "bg-black text-white"
+                      : "bg-transparent text-black hover:bg-black hover:text-white"
                       }`}
                   >
                     {link.name}
@@ -112,31 +109,35 @@ const Footer = () => {
                 href="https://wa.me/917729051055"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-white hover:bg-white transition-all duration-300 group"
+                className="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-black hover:bg-black transition-all duration-300 group"
               >
                 <Image
                   src='/assets/whatapp.png'
                   alt="WhatsApp"
                   width={20}
                   height={20}
-                  className="brightness-0 invert group-hover:invert-0 transition-all"
+                  className="filter group-hover:brightness-0 group-hover:invert transition-all"
                 />
               </a>
               <a
                 href="https://instagram.com/_Snapaura_"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-white hover:bg-white transition-all duration-300 group"
+                className="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-black hover:bg-black transition-all duration-300 group"
               >
                 <Image
                   src='/assets/instagram.png'
                   alt="Instagram"
                   width={20}
                   height={20}
-                  className="brightness-0 invert group-hover:invert-0 transition-all"
+                  className="filter group-hover:brightness-0 group-hover:invert transition-all"
                 />
               </a>
             </div>
+          </div>
+          {/* Copyright */}
+          <div className="text-center text-sm text-black mt-4 lg:hidden">
+            © 2025 Snap Aura. All rights reserved.
           </div>
         </div>
       </div>
